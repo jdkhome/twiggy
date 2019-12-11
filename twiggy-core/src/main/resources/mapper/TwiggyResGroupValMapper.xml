@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jdkhome.twiggy.generator.dao.TwiggyResGroupValMapper">
+  <resultMap id="BaseResultMap" type="com.jdkhome.twiggy.generator.model.TwiggyResGroupVal">
+    <id column="group_no" jdbcType="VARCHAR" property="groupNo" />
+    <id column="res_key" jdbcType="VARCHAR" property="resKey" />
+    <id column="res_val" jdbcType="VARCHAR" property="resVal" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    group_no, res_key, res_val, create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.jdkhome.twiggy.generator.model.TwiggyResGroupValExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from twiggy_res_group_vals
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.jdkhome.twiggy.generator.model.TwiggyResGroupValKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from twiggy_res_group_vals
+    where group_no = #{groupNo,jdbcType=VARCHAR}
+      and res_key = #{resKey,jdbcType=VARCHAR}
+      and res_val = #{resVal,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.jdkhome.twiggy.generator.model.TwiggyResGroupValKey">
+    delete from twiggy_res_group_vals
+    where group_no = #{groupNo,jdbcType=VARCHAR}
+      and res_key = #{resKey,jdbcType=VARCHAR}
+      and res_val = #{resVal,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jdkhome.twiggy.generator.model.TwiggyResGroupValExample">
+    delete from twiggy_res_group_vals
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jdkhome.twiggy.generator.model.TwiggyResGroupVal">
+    insert into twiggy_res_group_vals (group_no, res_key, res_val, 
+      create_time, update_time)
+    values (#{groupNo,jdbcType=VARCHAR}, #{resKey,jdbcType=VARCHAR}, #{resVal,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jdkhome.twiggy.generator.model.TwiggyResGroupVal">
+    insert into twiggy_res_group_vals
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="groupNo != null">
+        group_no,
+      </if>
+      <if test="resKey != null">
+        res_key,
+      </if>
+      <if test="resVal != null">
+        res_val,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="groupNo != null">
+        #{groupNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resKey != null">
+        #{resKey,jdbcType=VARCHAR},
+      </if>
+      <if test="resVal != null">
+        #{resVal,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jdkhome.twiggy.generator.model.TwiggyResGroupValExample" resultType="java.lang.Long">
+    select count(*) from twiggy_res_group_vals
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update twiggy_res_group_vals
+    <set>
+      <if test="record.groupNo != null">
+        group_no = #{record.groupNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resKey != null">
+        res_key = #{record.resKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resVal != null">
+        res_val = #{record.resVal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update twiggy_res_group_vals
+    set group_no = #{record.groupNo,jdbcType=VARCHAR},
+      res_key = #{record.resKey,jdbcType=VARCHAR},
+      res_val = #{record.resVal,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jdkhome.twiggy.generator.model.TwiggyResGroupVal">
+    update twiggy_res_group_vals
+    <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where group_no = #{groupNo,jdbcType=VARCHAR}
+      and res_key = #{resKey,jdbcType=VARCHAR}
+      and res_val = #{resVal,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jdkhome.twiggy.generator.model.TwiggyResGroupVal">
+    update twiggy_res_group_vals
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where group_no = #{groupNo,jdbcType=VARCHAR}
+      and res_key = #{resKey,jdbcType=VARCHAR}
+      and res_val = #{resVal,jdbcType=VARCHAR}
+  </update>
+</mapper>

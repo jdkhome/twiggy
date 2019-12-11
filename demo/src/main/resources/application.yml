@@ -1,0 +1,18 @@
+# 内置tomcat端口
+twiggy:
+  controller: com.demo
+  timeout: 1440
+  mysql:
+    url: jdbc:mysql://192.168.1.233:6603/twiggy?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: twiggy
+    password: twiggy
+  redis:
+    host: 192.168.1.233
+    port: 16379
+    password: ikun520520520
+    database: 14
+
+
+
+
+

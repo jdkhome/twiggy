@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!-- 配置Run As Maven build : Goals 参数 : mybatis-generator:generate -Dmybatis.generator.overwrite=true -->
+<!-- 配置 tableName,使用 Run As Maven build 生成 dao model 层 -->
+<generatorConfiguration>
+    <!-- 配置文件路径 <properties url="${mybatis.generator.generatorConfig.properties}"/> -->
+
+    <!--数据库驱动包路径 -->
+    <classPathEntry location="mysql-connector-java-5.1.40.jar"/>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!--关闭注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--数据库连接信息 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.1.233:6603/twiggy"
+                        userId="twiggy"
+                        password="twiggy">
+        </jdbcConnection>
+
+        <!--生成的model 包路径 -->
+        <javaModelGenerator targetPackage="com.jdkhome.twiggy.generator.model"
+                            targetProject="../src/main/java">
+            <property name="enableSubPackages" value="ture"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--生成xml mapper文件 路径 -->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="../src/main/resources">
+            <property name="enableSubPackages" value="ture"/>
+        </sqlMapGenerator>
+
+        <!-- 生成的Dao接口 的包路径 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.jdkhome.twiggy.generator.dao"
+                             targetProject="../src/main/java">
+            <property name="enableSubPackages" value="ture"/>
+        </javaClientGenerator>
+
+
+        <!-- 表配置 -->
+
+        <!-- 用户 -->
+        <table tableName="twiggy_tokens" domainObjectName="TwiggyToken"
+               enableCountByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               enableUpdateByExample="true"></table>
+
+        <!-- 角色 -->
+<!--        <table tableName="twiggy_roles" domainObjectName="TwiggyRole"-->
+<!--               enableCountByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               enableUpdateByExample="true"></table>-->
+
+        <!-- 角色用户关联 -->
+        <table tableName="twiggy_role_tokens" domainObjectName="TwiggyRoleToken"
+               enableCountByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               enableUpdateByExample="true"></table>
+
+        <!-- 权限组 -->
+        <table tableName="twiggy_fun_groups" domainObjectName="TwiggyFunGroup"
+               enableCountByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               enableUpdateByExample="true"></table>
+
+        <!-- 权限组内容 -->
+        <table tableName="twiggy_fun_group_vals" domainObjectName="TwiggyFunGroupVal"
+               enableCountByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               enableUpdateByExample="true"></table>
+
+        <!-- 权限组成员 -->
+        <table tableName="twiggy_fun_group_tokens" domainObjectName="TwiggyFunGroupToken"
+               enableCountByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               enableUpdateByExample="true"></table>
+
+        <!-- 资源授权 -->
+        <table tableName="twiggy_res_grants" domainObjectName="TwiggyResGrant"
+               enableCountByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               enableUpdateByExample="true"></table>
+
+        <!-- 资源组 -->
+        <table tableName="twiggy_res_groups" domainObjectName="TwiggyResGroup"
+               enableCountByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               enableUpdateByExample="true"></table>
+
+        <!-- 资源组内容 -->
+        <table tableName="twiggy_res_group_vals" domainObjectName="TwiggyResGroupVal"
+               enableCountByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               enableUpdateByExample="true"></table>
+
+        <!-- 资源组成员 -->
+        <table tableName="twiggy_res_group_tokens" domainObjectName="TwiggyResGroupToken"
+               enableCountByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               enableUpdateByExample="true"></table>
+
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,4 @@
+rootProject.name = 'twiggy'
+include 'demo'
+include 'twiggy-core'
+

@@ -1,0 +1,6 @@
+jar {
+    baseName = "demo"
+}
+dependencies {
+    compile project(":twiggy-core")
+}
