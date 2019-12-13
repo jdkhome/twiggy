@@ -33,7 +33,7 @@ public class OrderController {
         String orderNo;
     }
 
-    @Twiggy(value = "通过订单号获取订单", fun = "(merchant>0)||(user>0)||(superAdmin>0)")
+    @Twiggy(value = "通过订单号获取订单", fun = "(merchant>0)||(user>0)")
     @RequestMapping("/get")
     public Order getOrder(@Valid GetOrderParams params) {
 
@@ -42,6 +42,7 @@ public class OrderController {
         order.setValue("xxxx");
         order.setAccountNo("ACC0001");
 
+        // 校验权限
         if (!orderResAuth.authOne(order)) {
             throw new TwiggyPermissionDeniedException();
         }
@@ -61,14 +62,15 @@ public class OrderController {
 
         @TwiggyRes
         String accountNo;
+
     }
 
-    @Twiggy(value = "获取订单列表", fun = "(merchant>0)||(user>0)||(superAdmin>0)", res = "userId||accountNo")
+    @Twiggy(value = "获取订单列表", fun = "(merchant>0)||(user>0)", res = "userId||accountNo")
     @RequestMapping("/list")
     public List<Order> getOrderList(@Valid GetOrderListParams params) {
 
+        // ... 根据请求的参数 从各种数据源或者rpc获取相应数据
         List<Order> orders = new ArrayList<>();
-
         orders.add(new Order(1, "ACC0001", "xxxx"));
         orders.add(new Order(2, "ACC0001", "xxxx"));
         orders.add(new Order(3, "ACC0001", "xxxx"));
